@@ -4,6 +4,7 @@
 	<groupId>com.gusi.demo</groupId>
 	<artifactId>demoWechat</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<!-- Inherit defaults from Spring Boot -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
