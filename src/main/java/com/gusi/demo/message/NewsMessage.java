@@ -2,8 +2,10 @@ package com.gusi.demo.message;
 
 import java.util.List;
 
+import com.gusi.demo.utils.MessageUtil;
+
 /**
- * 文本消息
+ * 图文消息
  *
  */
 public class NewsMessage extends BaseMessage {
@@ -11,6 +13,11 @@ public class NewsMessage extends BaseMessage {
 	private int ArticleCount;
 	// 多条图文消息信息，默认第一个item为大图
 	private List<Article> Articles;
+
+	public NewsMessage() {
+		super();
+		this.MsgType = MessageUtil.RESP_MESSAGE_TYPE_NEWS;
+	}
 
 	public int getArticleCount() {
 		return ArticleCount;

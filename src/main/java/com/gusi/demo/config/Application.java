@@ -49,10 +49,8 @@ public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-		// System.out.println("hello");
-		// System.out.println(SpringBeanUtil.getBean("wechatController"));
-		// System.out.println(SpringBeanUtil.getBean(WechatConfig.class)
-		// .getAppid());
-		// System.out.println(WechatConfig.getInstance().getAppid());
+
+		// Object o = SpringBeanUtil.getBean("wechatController");
+		// System.out.println(o);
 	}
 }
