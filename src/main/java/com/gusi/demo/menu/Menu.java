@@ -34,9 +34,10 @@ public class Menu {
 		clickButton.setKey("11");
 
 		ViewButton viewButton = new ViewButton();
-		viewButton.setName("view菜单");
+		viewButton.setName("view菜单-");
 		viewButton.setType(VIEW);
-		viewButton.setUrl("http://yoting.github.io");
+		viewButton
+				.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2d55a802cd62c6ad&redirect_uri=http://yoting.tunnel.qydev.com/business&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect");
 
 		ClickButton comp1Button = new ClickButton();
 		comp1Button.setKey("31");

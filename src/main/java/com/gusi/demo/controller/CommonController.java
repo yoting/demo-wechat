@@ -3,6 +3,7 @@ package com.gusi.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gusi.demo.config.WechatConfig;
@@ -32,5 +33,11 @@ public class CommonController {
 		} else {
 			return "no commnd find!";
 		}
+	}
+
+	@RequestMapping("/business")
+	public String business(@RequestParam(name = "code", required = false, defaultValue = "") String code,
+			@RequestParam(name = "state", required = false, defaultValue = "") String state) {
+		return "sucess->code:" + code + ";state" + state;
 	}
 }
