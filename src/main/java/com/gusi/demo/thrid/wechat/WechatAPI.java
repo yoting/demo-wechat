@@ -6,11 +6,10 @@ import java.util.Map;
 import com.alibaba.fastjson.JSONObject;
 import com.gusi.demo.config.WechatConfig;
 import com.gusi.demo.utils.HttpClientUtil;
+import com.gusi.demo.utils.StaticVarUtil;
 
 public class WechatAPI {
-	public static final String APPID = "APPID";
-	public static final String APPSECRET = "APPSECRET";
-	public static final String ACCESS_TOKEN = "ACCESS_TOKEN";
+
 	public static String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
 	public static String ACCESS_TOKEN_CODE_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=APPSECRET&code=CODE&grant_type=authorization_code";
 	public static String MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
@@ -26,9 +25,8 @@ public class WechatAPI {
 	public static Map<String, String> getBaseInfo(String code) {
 		Map<String, String> result = new HashMap<String, String>();
 		if (code == null || code.isEmpty()) {// 获取通用token
-			String urlStr = ACCESS_TOKEN_URL.replace(APPID,
-					WechatConfig.getInstance().getAppid()).replace(APPSECRET,
-					WechatConfig.getInstance().getAppsecret());
+			String urlStr = ACCESS_TOKEN_URL.replace(StaticVarUtil.WechatVar.APPID, WechatConfig.getInstance().getAppid()).replace(
+					StaticVarUtil.WechatVar.APPSECRET, WechatConfig.getInstance().getAppsecret());
 			String data = HttpClientUtil.executeGet(urlStr);
 
 			if (data != null) {
@@ -37,11 +35,8 @@ public class WechatAPI {
 				result.put("token", token);
 			}
 		} else {
-			String urlStr = ACCESS_TOKEN_CODE_URL
-					.replace(APPID, WechatConfig.getInstance().getAppid())
-					.replace(APPSECRET,
-							WechatConfig.getInstance().getAppsecret())
-					.replace("CODE", code);
+			String urlStr = ACCESS_TOKEN_CODE_URL.replace(StaticVarUtil.WechatVar.APPID, WechatConfig.getInstance().getAppid())
+					.replace(StaticVarUtil.WechatVar.APPSECRET, WechatConfig.getInstance().getAppsecret()).replace("CODE", code);
 			String data = HttpClientUtil.executeGet(urlStr);
 
 			if (data != null) {
@@ -56,7 +51,7 @@ public class WechatAPI {
 	}
 
 	public static int createMenu(String token, String menuData) {
-		String urlStr = MENU_URL.replace(ACCESS_TOKEN, token);
+		String urlStr = MENU_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, token);
 		String result = HttpClientUtil.executePost(urlStr, menuData);
 		System.out.println(result);
 		return 0;

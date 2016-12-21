@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gusi.demo.message.Article;
 import com.gusi.demo.message.NewsMessage;
 import com.gusi.demo.message.TextMessage;
+import com.gusi.demo.mng.WechatTokenMng;
+import com.gusi.demo.mng.WechatUserInfoMng;
+import com.gusi.demo.mng.WechatUserInfoMng.UserInfo;
 import com.gusi.demo.utils.MessageUtil;
 import com.gusi.demo.utils.WechatSignUtil;
 
@@ -46,6 +49,7 @@ public class WechatController {
 			for (Map.Entry<String, String> p : reqMap.entrySet()) {
 				System.out.println(p.getKey() + ":" + p.getValue());
 			}
+			System.out.println("-------------------------------------");
 			if (MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(MsgType)) {
 				String result = null;
 				String Content = reqMap.get("Content");
@@ -119,7 +123,11 @@ public class WechatController {
 					System.out.println("取消了关注！");
 				} else if (Event.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
 					TextMessage message = new TextMessage();
-					message.setContent("感谢关注，请回复以下数字获取内容信息！\r\n1、获取第一个信息\r\n2、获取第二个信息");
+
+					UserInfo userinfo = WechatUserInfoMng.getUserInfoByFouse(WechatTokenMng.getAccessToken().getToken(), FromUserName);
+
+					message.setContent("感谢关注，" + userinfo.toString()
+							+ "\r\n请回复以下数字获取内容信息！\r\n1、获取第一个信息\r\n2、获取第二个信息\r\n3、获取一个新闻消息\r\n4、获取多个新闻消息");
 					message.setFromUserName(ToUserName);
 					message.setToUserName(FromUserName);
 					message.setCreateTime(System.currentTimeMillis());

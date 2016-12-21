@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gusi.demo.config.WechatConfig;
 import com.gusi.demo.menu.Menu;
+import com.gusi.demo.mng.WechatTokenMng;
+import com.gusi.demo.mng.WechatTokenMng.TokenCache;
+import com.gusi.demo.mng.WechatUserInfoMng;
+import com.gusi.demo.mng.WechatUserInfoMng.UserInfo;
 import com.gusi.demo.thrid.wechat.WechatAPI;
 
 @RestController
@@ -31,8 +35,7 @@ public class CommonController {
 	@RequestMapping("/cfg/{id}")
 	public String config(@PathVariable("id") int id) {
 		if (id == 1) {
-			WechatAPI.createMenu(WechatAPI.getBaseInfo(null).get("token"),
-					Menu.getDemoMenu());
+			WechatAPI.createMenu(WechatAPI.getBaseInfo(null).get("token"), Menu.getDemoMenu());
 			return "create menu success!";
 		} else {
 			return "no commnd find!";
@@ -40,10 +43,13 @@ public class CommonController {
 	}
 
 	@RequestMapping("/business")
-	public String business(
-			@RequestParam(name = "code", required = false, defaultValue = "") String code,
+	public String business(@RequestParam(name = "code", required = false, defaultValue = "") String code,
 			@RequestParam(name = "state", required = false, defaultValue = "") String state) {
 		System.out.println(code);
+		TokenCache token = WechatTokenMng.getAccessTokenByCode(code);
+		System.out.println(token);
+		UserInfo userinfo = WechatUserInfoMng.getUserInfoByAuth(token.getToken(), token.getOpenid());
+		System.out.println(userinfo);
 		return "sucess->code:" + code + ";state:" + state;
 	}
 
@@ -52,7 +58,6 @@ public class CommonController {
 		Map<String, String> data = WechatAPI.getBaseInfo(code);
 		String token = data.get("token");
 		String openid = data.get("openid");
-		return "get user info success!\r\n token:" + token + ";openid:"
-				+ openid;
+		return "get user info success!\r\n token:" + token + ";openid:" + openid;
 	}
 }
