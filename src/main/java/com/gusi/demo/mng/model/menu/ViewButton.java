@@ -1,4 +1,4 @@
-package com.gusi.demo.menu;
+package com.gusi.demo.mng.model.menu;
 
 public class ViewButton extends Button {
 	private String url;

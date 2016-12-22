@@ -4,6 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.gusi.demo.utils.HttpClientUtil;
 import com.gusi.demo.utils.StaticVarUtil;
 
+/**
+ * 用户信息获取
+ * 
+ * @author dyy_gusi
+ * @date 2016年12月22日上午11:43:37
+ *
+ */
 public class WechatUserInfoMng {
 	/**
 	 * 获取用户信息地址

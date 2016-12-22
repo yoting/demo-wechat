@@ -8,6 +8,13 @@ import com.gusi.demo.config.WechatConfig;
 import com.gusi.demo.utils.HttpClientUtil;
 import com.gusi.demo.utils.StaticVarUtil;
 
+/**
+ * 票据管理获取
+ * 
+ * @author dyy_gusi
+ * @date 2016年12月22日上午11:43:16
+ *
+ */
 public class WechatTokenMng {
 	public static String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
 	public static String ACCESS_TOKEN_CODE_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=APPSECRET&code=CODE&grant_type=authorization_code";
@@ -54,7 +61,8 @@ public class WechatTokenMng {
 
 				if (verifyAuthToken(access_token, openid)) {
 					token = new WechatTokenMng().new TokenCache(access_token, refresh_token, expires_in, openid, scope);
-					tokenMap.put(code, token);
+					// TODO：每次都新建token，不缓存
+					// tokenMap.put(code, token);
 					return token;
 				}
 			}

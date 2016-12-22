@@ -1,6 +1,7 @@
 package com.gusi.demo.controller;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSONObject;
 import com.gusi.demo.config.WechatConfig;
-import com.gusi.demo.menu.Menu;
+import com.gusi.demo.mng.WechatMenuMng;
 import com.gusi.demo.mng.WechatTokenMng;
 import com.gusi.demo.mng.WechatTokenMng.TokenCache;
 import com.gusi.demo.mng.WechatUserInfoMng;
 import com.gusi.demo.mng.WechatUserInfoMng.UserInfo;
+import com.gusi.demo.mng.model.menu.Menu;
+import com.gusi.demo.mng.model.menu.MenuSpecial;
 import com.gusi.demo.thrid.wechat.WechatAPI;
 
 @RestController
@@ -34,9 +38,22 @@ public class CommonController {
 
 	@RequestMapping("/cfg/{id}")
 	public String config(@PathVariable("id") int id) {
-		if (id == 1) {
-			WechatAPI.createMenu(WechatAPI.getBaseInfo(null).get("token"), Menu.getDemoMenu());
+		if (id == 0) {
+			Map<String, String> cfg = new TreeMap<String, String>();
+			cfg.put("1", "create menu");
+			cfg.put("2", "create menu special");
+			cfg.put("3", "query menu");
+
+			return JSONObject.toJSONString(cfg, true);
+		} else if (id == 1) {
+			WechatMenuMng.createMenu(WechatTokenMng.getAccessToken().getToken(), Menu.getDemoMenu());
 			return "create menu success!";
+		} else if (id == 2) {
+			WechatMenuMng.createMenuSpecial(WechatTokenMng.getAccessToken().getToken(), MenuSpecial.getDemoMenuSpecial());
+			return "create menu special success!";
+		} else if (id == 3) {
+			String menuData = WechatMenuMng.queryMenu(WechatTokenMng.getAccessToken().getToken());
+			return menuData;
 		} else {
 			return "no commnd find!";
 		}

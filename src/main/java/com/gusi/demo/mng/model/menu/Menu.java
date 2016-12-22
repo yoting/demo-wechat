@@ -1,4 +1,6 @@
-package com.gusi.demo.menu;
+package com.gusi.demo.mng.model.menu;
+
+import java.util.Arrays;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -15,7 +17,7 @@ public class Menu {
 	public static String MEDIA_ID = "media_id";// ：下发消息（除文本消息）用户点击media_id类型按钮后，微信服务器会将开发者填写的永久素材id对应的素材下发给用户，永久素材类型可以是图片、音频、视频、图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。
 	public static String VIEW_LIMITED = "view_limited";// ：跳转图文消息URL用户点击view_limited类型按钮后，微信客户端将打开开发者在按钮中填写的永久素材id对应的图文消息URL，永久素材类型只支持图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。
 
-	private Button[] button;
+	protected Button[] button;
 
 	public Button[] getButton() {
 		return button;
@@ -23,6 +25,11 @@ public class Menu {
 
 	public void setButton(Button[] button) {
 		this.button = button;
+	}
+
+	@Override
+	public String toString() {
+		return "Menu [button=" + Arrays.toString(button) + "]";
 	}
 
 	public static String getDemoMenu() {
@@ -34,7 +41,7 @@ public class Menu {
 		clickButton.setKey("11");
 
 		ViewButton viewButton = new ViewButton();
-		viewButton.setName("view菜单-");
+		viewButton.setName("view菜单");
 		viewButton.setType(VIEW);
 		viewButton
 				.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2d55a802cd62c6ad&redirect_uri=http://yoting.tunnel.qydev.com/business&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect");
@@ -55,7 +62,7 @@ public class Menu {
 		menu.setButton(new Button[] { clickButton, viewButton, compButton });
 
 		String json = JSONObject.toJSONString(menu);
-		System.out.println(json);
+		// System.out.println(json);
 		return json;
 	}
 }
