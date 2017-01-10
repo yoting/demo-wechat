@@ -1,7 +1,7 @@
 package com.gusi.demo.mng.model.user;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.gusi.demo.mng.model.BaseDataCube;
+import com.gusi.demo.mng.model.base.BaseDataCube;
 
 /**
  * 累计用户数据

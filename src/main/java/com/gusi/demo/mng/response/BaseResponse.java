@@ -1,7 +1,7 @@
 package com.gusi.demo.mng.response;
 
 import com.gusi.demo.enums.ResultType;
-import com.gusi.demo.mng.model.BaseModel;
+import com.gusi.demo.mng.model.base.BaseModel;
 import com.gusi.demo.utils.BeanUtil;
 import com.gusi.demo.utils.StringUtil;
 

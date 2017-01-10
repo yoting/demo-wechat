@@ -2,7 +2,7 @@ package com.gusi.demo.mng.response;
 
 import java.util.List;
 
-import com.gusi.demo.mng.model.UpstreamMsgHour;
+import com.gusi.demo.mng.model.statistic.UpstreamMsgHour;
 
 /**
  * @author peiyu

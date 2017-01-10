@@ -1,29 +1,19 @@
-package com.gusi.demo.mng.model;
+package com.gusi.demo.mng.model.statistic;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.gusi.demo.mng.model.base.BaseDataCube;
 
 /**
- * 消息分送分时数据
  * @author peiyu
  */
-public class UpstreamMsgHour extends BaseDataCube {
+public class UpstreamMsg extends BaseDataCube {
 
-    @JSONField(name = "ref_hour")
-    private Integer refHour;
     @JSONField(name = "msg_type")
     private Integer msgType;
     @JSONField(name = "msg_user")
     private Integer msgUser;
     @JSONField(name = "msg_count")
     private Integer msgCount;
-
-    public Integer getRefHour() {
-        return refHour;
-    }
-
-    public void setRefHour(Integer refHour) {
-        this.refHour = refHour;
-    }
 
     public Integer getMsgType() {
         return msgType;

@@ -1,6 +1,7 @@
-package com.gusi.demo.mng.model;
+package com.gusi.demo.mng.model.statistic;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.gusi.demo.mng.model.base.BaseDataCube;
 
 /**
  * 图文群发每日数据

@@ -1,6 +1,7 @@
 package com.gusi.demo.mng.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.gusi.demo.mng.model.base.BaseModel;
 
 /**
  * 客服帐号对象

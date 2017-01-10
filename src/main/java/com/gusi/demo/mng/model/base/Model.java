@@ -1,4 +1,4 @@
-package com.gusi.demo.mng.model;
+package com.gusi.demo.mng.model.base;
 
 import java.io.Serializable;
 

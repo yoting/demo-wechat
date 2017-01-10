@@ -1,6 +1,8 @@
-package com.gusi.demo.mng.model;
+package com.gusi.demo.mng.model.statistic;
 
 import java.util.List;
+
+import com.gusi.demo.mng.model.base.BaseDataCube;
 
 /**
  * 图文群发总数据
