@@ -5,7 +5,14 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 
-public class OneParamReq extends CommonReq {
+/**
+ * 简单参数请求对象
+ * 
+ * @author dyy_gusi
+ * @date 2016年12月29日下午12:03:05
+ *
+ */
+public class SimpleParamReq extends CommonReq {
 	private Map<String, Object> param = new HashMap<String, Object>();
 
 	public void putParam(String key, Object value) {
@@ -19,7 +26,7 @@ public class OneParamReq extends CommonReq {
 
 	public static void main(String[] args) {
 
-		OneParamReq paramReq = new OneParamReq();
+		SimpleParamReq paramReq = new SimpleParamReq();
 
 		paramReq.putParam("a", 1);
 		paramReq.putParam("b", "2");

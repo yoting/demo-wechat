@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 import com.gusi.demo.config.WechatConfig;
-import com.gusi.demo.utils.HttpClientUtil;
+import com.gusi.demo.utils.HttpClientJDKUtil;
 import com.gusi.demo.utils.StaticVarUtil;
 
 /**
@@ -30,7 +30,7 @@ public class WechatTokenMng {
 		} else {
 			String urlStr = ACCESS_TOKEN_URL.replace(StaticVarUtil.WechatVar.APPID, WechatConfig.getInstance().getAppid()).replace(
 					StaticVarUtil.WechatVar.APPSECRET, WechatConfig.getInstance().getAppsecret());
-			String data = HttpClientUtil.executeGet(urlStr);
+			String data = HttpClientJDKUtil.executeGet(urlStr);
 
 			if (data != null) {
 				JSONObject jobj = JSONObject.parseObject(data);
@@ -47,7 +47,7 @@ public class WechatTokenMng {
 		if (token == null) {
 			String urlStr = ACCESS_TOKEN_CODE_URL.replace(StaticVarUtil.WechatVar.APPID, WechatConfig.getInstance().getAppid())
 					.replace(StaticVarUtil.WechatVar.APPSECRET, WechatConfig.getInstance().getAppsecret()).replace("CODE", code);
-			String data = HttpClientUtil.executeGet(urlStr);
+			String data = HttpClientJDKUtil.executeGet(urlStr);
 
 			if (data != null) {
 				JSONObject jobj = JSONObject.parseObject(data);
@@ -72,7 +72,7 @@ public class WechatTokenMng {
 			}
 			String urlStr = ACCESS_TOKEN_REFUSH_URL.replace(StaticVarUtil.WechatVar.APPID, WechatConfig.getInstance().getAppid()).replace(
 					"REFRESH_TOKEN", token.getTokenBak());
-			String data = HttpClientUtil.executeGet(urlStr);
+			String data = HttpClientJDKUtil.executeGet(urlStr);
 
 			if (data != null) {
 				JSONObject jobj = JSONObject.parseObject(data);
@@ -98,7 +98,7 @@ public class WechatTokenMng {
 	private static boolean verifyAuthToken(String token, String openid) {
 		String urlStr = ACCESS_TOKEN_VERIFY_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, token).replace(
 				StaticVarUtil.WechatVar.OPENID, openid);
-		String data = HttpClientUtil.executeGet(urlStr);
+		String data = HttpClientJDKUtil.executeGet(urlStr);
 		if (data != null) {
 			JSONObject jobj = JSONObject.parseObject(data);
 			int errcode = jobj.getInteger("errcode");

@@ -18,7 +18,6 @@ import com.gusi.demo.mng.WechatUserInfoMng;
 import com.gusi.demo.mng.WechatUserInfoMng.UserInfo;
 import com.gusi.demo.mng.model.menu.Menu;
 import com.gusi.demo.mng.model.menu.MenuSpecial;
-import com.gusi.demo.thrid.wechat.WechatAPI;
 
 @RestController
 public class CommonController {
@@ -72,9 +71,9 @@ public class CommonController {
 
 	@RequestMapping("/userinfo/{code}")
 	public String getUserInfo(@PathVariable(name = "code") String code) {
-		Map<String, String> data = WechatAPI.getBaseInfo(code);
-		String token = data.get("token");
-		String openid = data.get("openid");
-		return "get user info success!\r\n token:" + token + ";openid:" + openid;
+		TokenCache token = WechatTokenMng.getAccessTokenByCode(code);
+		UserInfo userinfo = WechatUserInfoMng.getUserInfoByAuth(token.getToken(), token.getOpenid());
+		String openid = userinfo.getOpenid();
+		return "get user info success!\r\n token:" + token.getToken() + ";openid:" + openid;
 	}
 }

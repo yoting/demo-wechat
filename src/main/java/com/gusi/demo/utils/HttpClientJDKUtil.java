@@ -11,7 +11,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class HttpClientUtil {
+/**
+ * http请求客户端
+ * 
+ * @author dyy_gusi
+ * @date 2016年12月29日下午5:52:22
+ *
+ */
+public class HttpClientJDKUtil {
 	public static String executeGet(String urlStr) {
 		try {
 			URL url = new URL(urlStr);
@@ -73,5 +80,24 @@ public class HttpClientUtil {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	/**
+	 * 请求响应后回调接口
+	 * 
+	 * @author dyy_gusi
+	 * @date 2016年12月29日下午5:45:38
+	 *
+	 */
+	public interface ResponseCallback {
+		/**
+		 * 响应后回调方法
+		 *
+		 * @param resultCode
+		 *            响应结果码，比如200成功，404不存在，500服务器异常等
+		 * @param resultJson
+		 *            响应内容，目前支持JSON字符串
+		 */
+		void onResponse(int resultCode, String resultJson);
 	}
 }

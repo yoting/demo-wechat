@@ -24,8 +24,17 @@ import com.gusi.demo.utils.WechatSignUtil;
 @RequestMapping("/wechat")
 public class WechatController {
 
+	/**
+	 * 微信接口绑定
+	 * 
+	 * @param signature
+	 * @param timestamp
+	 * @param nonce
+	 * @param echostr
+	 * @return
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
-	public String verify(@RequestParam("signature") String signature, @RequestParam("timestamp") String timestamp,
+	public String bound(@RequestParam("signature") String signature, @RequestParam("timestamp") String timestamp,
 			@RequestParam("nonce") String nonce, @RequestParam("echostr") String echostr) {
 		// 通过检验signature对请求进行校验，若校验成功则原样返回echostr，表示接入成功，否则接入失败
 		if (WechatSignUtil.checkSignature(signature, timestamp, nonce)) {
@@ -34,7 +43,12 @@ public class WechatController {
 		return "";
 	}
 
-	// 调用核心业务类接收消息、处理消息跟推送消息，这里暂时不做处理
+	/**
+	 * 调用核心业务类接收消息、处理消息跟推送消息
+	 * 
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/xml; charset=UTF-8")
 	public String post(HttpServletRequest req) {
 

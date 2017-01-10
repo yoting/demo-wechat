@@ -1,7 +1,7 @@
 package com.gusi.demo.mng;
 
 import com.alibaba.fastjson.JSONObject;
-import com.gusi.demo.utils.HttpClientUtil;
+import com.gusi.demo.utils.HttpClientJDKUtil;
 import com.gusi.demo.utils.StaticVarUtil;
 
 /**
@@ -24,7 +24,7 @@ public class WechatUserInfoMng {
 	public static UserInfo getUserInfoByAuth(String token, String openid) {
 		String urlStr = USER_INFO_AUTH_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, token).replace(StaticVarUtil.WechatVar.OPENID,
 				openid);
-		String data = HttpClientUtil.executeGet(urlStr);
+		String data = HttpClientJDKUtil.executeGet(urlStr);
 
 		if (data != null) {
 			JSONObject jobj = JSONObject.parseObject(data);
@@ -46,7 +46,7 @@ public class WechatUserInfoMng {
 
 	public static UserInfo getUserInfoByFouse(String token, String openid) {
 		String urlStr = USER_INFO_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, token).replace(StaticVarUtil.WechatVar.OPENID, openid);
-		String data = HttpClientUtil.executeGet(urlStr);
+		String data = HttpClientJDKUtil.executeGet(urlStr);
 
 		if (data != null) {
 			JSONObject jobj = JSONObject.parseObject(data);

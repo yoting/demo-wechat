@@ -2,7 +2,6 @@ package demoWechat;
 
 import org.junit.Test;
 
-import com.gusi.demo.thrid.wechat.WechatAPI;
 import com.gusi.demo.utils.SpringBeanUtil;
 
 public class WechatTest {
@@ -13,8 +12,4 @@ public class WechatTest {
 		System.out.println(o);
 	}
 
-	@Test
-	public void testCreateMenu() {
-		WechatAPI.createMenu(null, null);
-	}
 }

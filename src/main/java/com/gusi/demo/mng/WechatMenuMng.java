@@ -1,7 +1,7 @@
 package com.gusi.demo.mng;
 
-import com.gusi.demo.mng.request.OneParamReq;
-import com.gusi.demo.utils.HttpClientUtil;
+import com.gusi.demo.mng.request.SimpleParamReq;
+import com.gusi.demo.utils.HttpClientJDKUtil;
 import com.gusi.demo.utils.StaticVarUtil;
 
 /**
@@ -24,42 +24,42 @@ public class WechatMenuMng {
 
 	public static String queryMenu(String token) {
 		String urlStr = MENU_QUERY_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, token);
-		String data = HttpClientUtil.executeGet(urlStr);
+		String data = HttpClientJDKUtil.executeGet(urlStr);
 		System.out.println(data);
 		return data;
 	}
 
 	public static void createMenu(String token, String menuData) {
 		String urlStr = MENU_CREATE_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, token);
-		String data = HttpClientUtil.executePost(urlStr, menuData);
+		String data = HttpClientJDKUtil.executePost(urlStr, menuData);
 		System.out.println(data);
 		return;
 	}
 
 	public static void deleteMenu(String token) {
 		String urlStr = MENU_DELETE_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, token);
-		String data = HttpClientUtil.executeGet(urlStr);
+		String data = HttpClientJDKUtil.executeGet(urlStr);
 		System.out.println(data);
 		return;
 	}
 
 	public static void createMenuSpecial(String token, String menuData) {
 		String urlStr = MENU_CREATE_SPECIAL_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, token);
-		String data = HttpClientUtil.executePost(urlStr, menuData);
+		String data = HttpClientJDKUtil.executePost(urlStr, menuData);
 		System.out.println(data);
 		return;
 	}
 
-	public static void deleteMenuSpecial(OneParamReq param) {
+	public static void deleteMenuSpecial(SimpleParamReq param) {
 		String urlStr = MENU_DELETE_SPECIAL_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, param.getToken());
-		String data = HttpClientUtil.executePost(urlStr, param.getParamJson());
+		String data = HttpClientJDKUtil.executePost(urlStr, param.getParamJson());
 		System.out.println(data);
 		return;
 	}
 
-	public static void matchMenu(OneParamReq param) {
+	public static void matchMenu(SimpleParamReq param) {
 		String urlStr = MENU_MATCH_URL.replace(StaticVarUtil.WechatVar.ACCESS_TOKEN, param.getToken());
-		String data = HttpClientUtil.executePost(urlStr, param.getParamJson());
+		String data = HttpClientJDKUtil.executePost(urlStr, param.getParamJson());
 		System.out.println(data);
 		return;
 	}
